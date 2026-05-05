@@ -12,7 +12,7 @@ const Game = (() => {
   const bird = {
     x: 80, y: 0, vy: 0,
     w: 38, h: 28,
-    gravity: 0.4, jumpForce: -8,
+    gravity: 0.4, jumpForce: -5.7,
     rotation: 0,
     flapFrame: 0, flapTimer: 0,
     invincible: 0,
