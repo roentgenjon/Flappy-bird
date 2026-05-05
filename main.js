@@ -146,14 +146,6 @@
     showScreen('screen-start');
   });
 
-  document.getElementById('btn-clear-data').addEventListener('click', () => {
-    if (confirm('Alle Daten wirklich löschen?')) {
-      Storage.clearAll();
-      Leaderboard.refresh();
-      refreshStartScreen();
-    }
-  });
-
   // Init leaderboard tabs
   Leaderboard.init();
 })();

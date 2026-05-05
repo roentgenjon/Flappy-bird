@@ -45,16 +45,26 @@ const Leaderboard = (() => {
     return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
 
+  function dedupe(entries) {
+    const best = new Map();
+    for (const e of entries) {
+      if (!best.has(e.name) || e.score > best.get(e.name).score) {
+        best.set(e.name, e);
+      }
+    }
+    return [...best.values()].sort((a, b) => b.score - a.score);
+  }
+
   function refresh() {
     let entries;
     if (currentTab === 'today') {
-      entries = Storage.getTodayScores();
+      entries = dedupe(Storage.getTodayScores());
     } else if (currentTab === 'personal') {
       entries = currentPlayer
         ? Storage.getScores().filter(s => s.name === currentPlayer)
         : [];
     } else {
-      entries = Storage.getScores();
+      entries = dedupe(Storage.getScores());
     }
     renderList(entries, currentPlayer);
   }
