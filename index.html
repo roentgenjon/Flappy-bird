@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flappy Bird</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Start Screen -->
+    <div id="screen-start" class="screen active">
+      <div class="logo">
+        <div class="bird-logo"></div>
+        <h1>Flappy Bird</h1>
+      </div>
+      <div class="start-info">
+        <div id="best-score-display" class="best-score hidden">
+          <span>Bester Score:</span>
+          <span id="best-score-value">0</span>
+        </div>
+      </div>
+      <div class="name-input-container">
+        <label for="player-name">Dein Name:</label>
+        <input type="text" id="player-name" maxlength="16" placeholder="Spielername" autocomplete="off">
+      </div>
+      <button id="btn-start" class="btn btn-primary">Spielen</button>
+      <button id="btn-leaderboard" class="btn btn-secondary">Rangliste</button>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="screen-game" class="screen">
+      <div id="hud">
+        <div class="hud-item">
+          <span class="hud-label">Score</span>
+          <span id="score">0</span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label">Best</span>
+          <span id="hud-best">0</span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label">Leben</span>
+          <span id="lives-display">&#9829;&#9829;&#9829;</span>
+        </div>
+      </div>
+      <canvas id="game-canvas"></canvas>
+      <div id="pause-overlay" class="hidden">
+        <div class="pause-box">
+          <h2>Pause</h2>
+          <button id="btn-resume" class="btn btn-primary">Weiter</button>
+          <button id="btn-quit" class="btn btn-secondary">Beenden</button>
+        </div>
+      </div>
+      <button id="btn-pause" class="btn-icon" title="Pause">⏸</button>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="screen-gameover" class="screen">
+      <div class="gameover-box">
+        <h2 id="gameover-title">Game Over</h2>
+        <div class="score-summary">
+          <div class="score-row">
+            <span>Score</span>
+            <span id="final-score">0</span>
+          </div>
+          <div class="score-row highlight">
+            <span>Highscore</span>
+            <span id="final-best">0</span>
+          </div>
+          <div id="new-highscore-badge" class="badge hidden">Neuer Highscore!</div>
+        </div>
+        <div class="medal-container">
+          <div id="medal" class="medal hidden"></div>
+        </div>
+        <div class="gameover-buttons">
+          <button id="btn-retry" class="btn btn-primary">Nochmal</button>
+          <button id="btn-menu" class="btn btn-secondary">Menü</button>
+          <button id="btn-leaderboard2" class="btn btn-secondary">Rangliste</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Leaderboard Screen -->
+    <div id="screen-leaderboard" class="screen">
+      <div class="leaderboard-container">
+        <h2>Rangliste</h2>
+        <div id="leaderboard-tabs" class="tabs">
+          <button class="tab active" data-tab="alltime">Allzeit</button>
+          <button class="tab" data-tab="today">Heute</button>
+          <button class="tab" data-tab="personal">Persönlich</button>
+        </div>
+        <div id="leaderboard-list" class="leaderboard-list">
+          <div class="loading">Lade Rangliste...</div>
+        </div>
+        <div class="leaderboard-footer">
+          <button id="btn-clear-data" class="btn btn-danger btn-small">Daten löschen</button>
+          <button id="btn-back" class="btn btn-secondary">Zurück</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="storage.js"></script>
+  <script src="leaderboard.js"></script>
+  <script src="game.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
